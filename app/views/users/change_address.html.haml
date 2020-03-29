@@ -1,0 +1,62 @@
+= render 'shared/header'
+
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      - breadcrumb :chenge_address
+      = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right nav__lists__list--icon ' )} "
+
+.main.clearfix
+  .change_address__main__rights
+    .change_address__main__rights__header
+      発送元・お届け先住所変更
+    .change_address__main__rights__contents
+      .change_address__main__rights__contents__form
+        = form_for(current_user) do |f|
+          .change_address__main__rights__contents__form__box
+            = f.label :familyname, 'お名前', class: 'main__rights__contents__form__box__top'
+            %span.form-require 必須
+            = f.text_field :familyname, value: current_user.familyname, class: 'main__rights__contents__form__box__bottom'
+            = f.text_field :firstname, value: current_user.firstname, class: 'main__rights__contents__form__box__bottom'
+
+          .change_address__main__rights__contents__form__box
+            = f.label :familyname_kana, 'お名前カナ', class: 'main__rights__contents__form__box__top'
+            %span.form-require 必須
+            = f.text_field :familyname_kana, value: current_user.familyname_kana, class: 'main__rights__contents__form__box__bottom'
+            = f.text_field :firstname_kana, value: current_user.firstname_kana, class: 'main__rights__contents__form__box__bottom'
+
+          = f.fields_for :address do |b|
+            .change_address__main__rights__contents__form__box
+              = b.label :postcode, '郵便番号', class: 'main__rights__contents__form__box__top'
+              %span.form-require 必須
+              = b.text_field :postcode, value: @address.postcode
+            .change_address__main__rights__contents__form__box
+              = b.label :prefecture, '都道府県', class: 'main__rights__contents__form__box__top'
+              %span.form-require 必須
+              = b.text_field :prefecture, value: @address.prefecture
+            .change_address__main__rights__contents__form__box
+              = b.label :municipality, '市区町村', class: 'main__rights__contents__form__box__top'
+              %span.form-require 必須
+              = b.text_field :municipality, value: @address.municipality
+            .change_address__main__rights__contents__form__box
+              = b.label :address, '番地', class: 'main__rights__contents__form__box__top'
+              %span.form-require 必須
+              = b.text_field :address, value: @address.address
+            .change_address__main__rights__contents__form__box
+              = b.label :building, '建物名', class: 'main__rights__contents__form__box__top'
+              %span.form-optional 任意
+              = b.text_field :building, value: @address.building
+            
+          .change_address__main__rights__contents__form__box
+            = f.label :phone, '電話番号', class: 'main__rights__contents__form__box__top'
+            %span.form-optional 任意
+            = f.text_field :phone, value: current_user.phone, placeholder: 'ハイフンなし'
+            = f.submit '変更する', class: 'form--button'
+
+  = render 'sidebar'
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+
+= render 'shared/footer'

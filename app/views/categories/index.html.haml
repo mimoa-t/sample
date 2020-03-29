@@ -1,0 +1,40 @@
+= render 'shared/header'
+
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      - breadcrumb :categories
+      = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right nav__lists__list--icon ' )} "
+
+.category.clearfix
+  %h2.category__title
+    カテゴリー一覧
+  .category__lists.clearfix
+    - @main_categories.each do |category|
+      = link_to category_path(category.id), class: 'category__lists__list' do
+        = category.name
+
+  .category__detail
+    - @main_categories.each do |category|
+      .category__detail__box
+        .category__detail__box--root
+          = category.name
+        .category__detail__box__lists
+          %p.category__detail__box__lists--all
+            = link_to '− すべて', category_path(category.id)
+          .category__detail__box__lists__list
+            - category.children.each do |child|
+              %p
+                = '− ' + child.name
+              .category__detail__box__lists__list__box
+                = link_to 'すべて', category_path(child.id)
+                - child.children.each do |grandchild|
+                  %p.category__detail__box__lists__list__box--name
+                    = link_to category_path(grandchild.id) do
+                      = grandchild.name
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+  
+= render 'shared/footer'

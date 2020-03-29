@@ -1,0 +1,30 @@
+.registration_index
+  .registration_index__header
+    .registration_index__header__logo
+
+      =link_to '' do
+        =image_tag "fmarket_logo_red.svg", height: 49
+  .registration_index__main
+    .registration
+      .registration__head
+        新規会員登録
+      .registration__contents
+        = link_to register_user_info_signup_index_path, class: 'registration__btn registration__btn--mail' do
+          = icon 'far', 'envelope', class: 'registration__btn--mail--icon'
+          メールアドレスで登録する
+        = link_to user_facebook_omniauth_authorize_path, method: "post", class: 'registration__btn registration__btn--facebook' do
+          = icon 'fab', 'facebook-square', class: 'registration__btn--facebook--icon'
+          Facebookで登録する
+        = link_to user_google_oauth2_omniauth_authorize_path, method: "post", class: 'registration__btn registration__btn--google' do
+          = icon 'fab', 'google', class: 'registration__btn--google--icon'
+          Googleで登録する
+  .registration_index__footer
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      プライバシーポリシー  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      メルカリ利用規約  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      特定商取引に関する表記
+      .registration_index__footer__logo
+        =link_to '' do
+          =image_tag "logo_gray.svg", height: 80

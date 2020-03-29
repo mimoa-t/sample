@@ -1,0 +1,145 @@
+= render 'shared/header'
+
+-# マイページ
+
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      - breadcrumb :users
+      = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right nav__lists__list--icon ' )} "
+
+.main.clearfix
+  .main__right
+    .main__right__top
+      .main__right__top__header
+        = link_to '' do
+          .main__right__top__header__profile
+            = image_tag 'human.svg', class: 'prof-image'
+          %h2 
+            = current_user.nickname
+          .main__right__top__header__about
+            評価
+            %span.main__right__top__header__about--bold 10
+          .main__right__top__header__about
+            出品数
+            %span.main__right__top__header__about--bold 10
+      .main__right__top__content
+        %ul.main__right__top__content__tabs
+          %li.top__content__tabs
+            %h3
+              お知らせ
+          %li.top__content__tabs.top__active
+            %h3
+              やることリスト
+        .main__right__top__content__lists
+          %ul.top__content__lists
+            %li.content__lists__list
+              = link_to '' do
+                .content__lists__list--image
+                  = image_tag "logo_red.svg", width: 48, height: 48
+                .content__lists__list__content
+                  .content__lists__list__content--text
+                    《もう参加した？》今なら2,020名様に1万円が当たるチャンス！詳しくはこちらから♪aaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  .content__lists__list__content--time
+                    = icon 'far', 'clock'
+                    %span ４日前
+                = icon 'fas', 'chevron-right'
+            %li.content__lists__list
+              = link_to '' do
+                .content__lists__list--image
+                  = image_tag "logo_red.svg", width: 48, height: 48
+                .content__lists__list__content
+                  .content__lists__list__content--text
+                    事務局から個別メッセージ「ログイン通知」
+                  .content__lists__list__content--time
+                    = icon 'far', 'clock'
+                    %span ５日前
+                = icon 'fas', 'chevron-right'
+            %li.content__lists__list
+              = link_to '' do
+                .content__lists__list--image
+                  = image_tag "logo_red.svg", width: 48, height: 48
+                .content__lists__list__content
+                  .content__lists__list__content--text
+                    事務局から個別メッセージ「ログイン通知」
+                  .content__lists__list__content--time
+                    = icon 'far', 'clock'
+                    %span ５日前
+                = icon 'fas', 'chevron-right'
+            %li.content__lists__list
+              = link_to '' do
+                .content__lists__list--image
+                  = image_tag "logo_red.svg", width: 48, height: 48
+                .content__lists__list__content
+                  .content__lists__list__content--text
+                    事務局から個別メッセージ「ログイン通知」
+                  .content__lists__list__content--time
+                    = icon 'far', 'clock'
+                    %span ５日前
+                = icon 'fas', 'chevron-right'
+            %li.content__lists__list
+              = link_to '' do
+                .content__lists__list--image
+                  = image_tag "logo_red.svg", width: 48, height: 48
+                .content__lists__list__content
+                  .content__lists__list__content--text
+                    事務局から個別メッセージ「ログイン通知」
+                  .content__lists__list__content--time
+                    = icon 'far', 'clock'
+                    %span ５日前
+                = icon 'fas', 'chevron-right'
+            %li.content__lists__list--all
+              = link_to '', {class: 'mypage__lists'} do
+                一覧をみる
+          %ul.top__content__lists.show
+            %li.content__lists__list--notfound
+              %span 現在、やることリストはありません
+          
+    .main__right__bottom
+      %h2.main__right__bottom__header
+        購入した商品
+      .main__right__bottom__content
+        %ul.main__right__bottom__content__tabs
+          %li.bottom__content__tabs
+            %h3
+              取引中
+          %li.bottom__content__tabs.bottom__active
+            %h3
+              過去の取引
+
+        .main__right__bottom__content__lists
+          %ul.bottom__content__lists
+            %li.content__lists__list--notfound
+              %span 取引中の商品がありません
+          %ul.bottom__content__lists.show
+            %li.content__lists__list
+              = link_to '' do
+                .content__lists__list--image
+                  = image_tag "logo_red.svg", width: 48, height: 48
+                .content__lists__list__content
+                  .content__lists__list__content--text
+                    「〇〇」を購入しました。
+                    %span 取引が完了しました
+                  .content--status.done 取引完了
+                = icon 'fas', 'chevron-right'
+            %li.content__lists__list
+              = link_to '' do
+                .content__lists__list--image
+                  = image_tag "logo_red.svg", width: 48, height: 48
+                .content__lists__list__content
+                  .content__lists__list__content--text
+                    「〇〇」を購入しました。
+                    %span 取引が完了しました
+                  .content--status.done 取引完了
+                = icon 'fas', 'chevron-right'
+            %li.content__lists__list--all
+              = link_to '', {class: 'mypage__lists'} do
+                一覧をみる
+  
+  = render 'sidebar'
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+
+= render 'shared/footer'

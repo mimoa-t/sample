@@ -1,0 +1,97 @@
+.footer
+  .navi.clearfix
+    .navi__cell.navi__cell--about
+      %h2
+        メルカリについて
+      %ul
+        %li
+          =link_to '' do 
+            会社概要（運営会社）
+        %li
+          =link_to '' do
+            採用情報
+        %li
+          =link_to '' do
+            プレリリース
+        %li
+          =link_to '' do
+            公式ブログ
+        %li
+          =link_to '' do
+            メルカリロゴ仕様ガイドライン
+        %li.navi__cell.navi__cell--about--icon
+          =link_to '' do
+            = icon 'fab', 'twitter', class: 'navi__cell--about--icon fa-2x'
+        %li.navi__cell.navi__cell--about--icon
+          =link_to '' do
+            = icon 'fab', 'facebook-square', class: 'navi__cell--about--icon fa-2x'
+    .navi__cell.navi__cell--help
+      %h2
+        ヘルプ＆ガイド
+      %ul
+        %li
+          =link_to '' do
+            メルカリガイド
+        %li
+          =link_to '' do
+            らくらくメルカリ便
+        %li
+          =link_to '' do
+            ゆうゆうメルカリ便
+        %li
+          =link_to '' do
+            大型メルカリ便
+        %li
+          =link_to '' do
+            車体取引ガイド
+        %li
+          =link_to '' do
+            メルカリあんしん・あんぜん宣言！
+        %li
+          =link_to '' do
+            偽ブランド品撲滅への取り組み
+        %li
+          =link_to '' do
+            メルカリボックス
+    .navi__cell.navi__cell--privacy
+      %h2
+        プライバシーと利用規約
+      %ul.navi__cell.navi__cell--privacy--left
+        %li
+          =link_to '' do
+            プライバシーポリシー
+        %li
+          =link_to '' do
+            メルカリ利用規約
+        %li
+          =link_to '' do
+            あんしんスマホサポート制度に関<br>する利用規約
+        %li
+          =link_to '' do
+            コンプライアンスポリシー
+      %ul.navi__cell.navi__cell--privacy--right
+        %li
+          =link_to '' do
+            個人データの安全管理に係る基本<br>方針
+        %li
+          =link_to '' do
+            特定商取引に関する表記
+        %li
+          =link_to '' do
+            資金決済法に基づく表示
+        %li
+          =link_to '' do
+            法令遵守と犯罪抑止のために
+          
+    .navi__cell.navi__cell--country
+      %h2
+        国
+      %ul
+        %li
+          %a{href: ""} 日本
+        %li
+          %a{href: ""} United States
+  .bottom
+    =link_to '', class: 'bottom--logo' do
+      = image_tag "fmarket_logo_white.svg", width: 124, height: 31, alt: "mercari"
+    %span ©️ Mercari, Inc.

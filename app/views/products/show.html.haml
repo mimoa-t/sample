@@ -1,0 +1,210 @@
+= render 'shared/header'
+
+.item_detail_container
+  .item_detail_container__main
+    .item_detail_container__main--item_name
+      %h1
+        = @product.name
+    .item_detail_container__main__item_detail
+      .item_detail_container__main__item_detail__left
+        .item_detail_container__main__item_detail__left--top
+          .bg_photo
+            - images = Image.where(product_id: @product.id)
+            - product_image = images.first
+            = image_tag product_image.image.to_s, height: '300px', width: '300px'
+        .item_detail_container__main__item_detail__left--bottom
+          - @product.images.each do |b|
+            .sm_photos
+              = image_tag b.image.to_s, height: '60px', width: '60px'
+
+        .item_detail_container__main__item_detail__left--bottom
+
+      .item_detail_container__main__item_detail--right
+        %table
+          %tr
+            %th 出品者
+            %td
+              = link_to '' do
+                = @product.user.nickname
+              %div
+                .item_rate
+                  = icon 'fas', 'grin', class: 'item_rate--good'
+                  %span 10
+                .item_rate
+                  = icon 'fas', 'meh', class: 'item_rate--normal'
+                  %span 5
+                .item_rate
+                  = icon 'fas', 'frown', class: 'item_rate--bad'
+                  %span 1
+          %tr
+            %th カテゴリー
+            %td
+              =link_to '' do
+                %span
+                  = @product.category.root.name
+              %br/
+              =link_to '' do
+                = icon 'fas', 'angle-right'
+                %span
+                  = @product.category.parent.name
+              %br/
+              =link_to '' do
+                = icon 'fas', 'angle-right'
+                %span
+                  = @product.category.name
+          %tr
+            %th ブランド
+            %td
+              =link_to '' do
+                サファリ
+          %tr
+            %th 商品の状態
+            %td
+              = @product.state.name
+          %tr
+            %th 配送料の負担
+            %td
+              = @product.delivery_charge.name
+          %tr
+            %th 配送の方法
+            %td
+              = @product.delivery_method.name
+          %tr
+            %th 配送元の地域
+            %td
+              =link_to '' do
+                = @product.delivery_area.name
+          %tr
+            %th 発送日の目安
+            %td
+              = @product.delivery_date.name
+
+    .item_detail_container__main__price_box
+      .item_detail_container__main__price_box--item_price
+        %span
+          = number_to_currency(@product.price, unit: "￥", format: "%u%n")
+      .item_detail_container__main__price_box--item_tax
+        %span （税込）
+      .item_detail_container__main__price_box--item_fee
+        %span 送料込み
+    - if user_signed_in?
+      - if @product.status_id == 1 && @product.user_id != current_user.id
+        .item_detail_container__main--item_buy_button
+          = link_to product_purchase_index_path(@product) do
+            購入画面に進む
+
+    - if @product.delivery_method == 2
+      .item_detail_container__main--pc_error_text
+        この商品はらくらくメルカリ便を利用しているため、アプリからのみ購入できます。
+
+    .item_detail_container__main--item_text
+      = simple_format(@product.description)
+
+    .item_detail_container__main__bottom
+      .item_detail_container__main__bottom__left
+        .item_detail_container__main__bottom__left--like_button
+          = icon 'far', 'heart'
+          %span いいね!
+          %span.like_num 10
+        .item_detail_container__main__bottom__left--report
+          = icon 'far', 'flag'
+          不適切な商品の報告
+      .item_detail_container__main__bottom--right
+        =link_to '' ,class: '' do
+          = icon 'fas', 'lock'
+          あんしん・あんぜんへの取り組み
+
+  - if user_signed_in?
+    - if @product.user_id == current_user.id && (@product.status_id == 1 || @product.status_id == 3)
+      .item_detail_container__change-status
+        .item_detail_container__change-status__box
+          = link_to "商品の編集", edit_product_path, class: 'item_detail_container__change-status__box--edit'
+          %p or
+          - if @product.status_id == 1
+            = button_to "出品を一旦停止する", stop_selling_product_path(@product, status_id: 3), {method: :put, class: 'item_detail_container__change-status__box--stop'}
+          - else
+            = button_to "出品を再開する", reselling_product_path(@product, status_id: 1), {method: :put, class: 'item_detail_container__change-status__box--stop'}
+          %button#modal-open-btn.item_detail_container__change-status__box--delete この商品を削除する
+          = link_to '', product_path(@product), method: :delete, id: 'item-delete-btn'
+          #overlay
+          #modalWindow
+            .modal-message-box
+              .modal-message-box--bold
+                確認
+              .modal-message-box--normal
+                削除すると二度と復活できません。<br>
+                削除する代わりに停止することもできます。<br><br>
+                本当に削除しますか？
+            %button#modal-close-btn キャンセル
+            %button#delete-comformation-btn 削除する
+
+  .item_detail_container__message_contents
+    .item_detail_container__message_contents--message_list
+      %ul
+        = render partial: "comments/comment", collection: @comments
+
+    .item_detail_container__message_contents--textarea
+      %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      - if @product.status_id == 1
+        = form_tag product_comments_path(@product) do |f|
+          = text_area_tag :comment, '', class: 'product_detail_textarea'
+          = submit_tag 'コメントする', class: 'product_detail_textarea__btn'
+      - else
+        .product_detail_textarea
+        = link_to '', class: 'product_detail_textarea__btn' do
+          売り切れのためコメントできません
+
+    %ul.item_detail_container__next_item
+      - if @previous_product
+        %li.item_detail_container__next_item--prev
+          = link_to product_path(@previous_product) do
+            = icon 'fas', 'chevron-left'
+            = @previous_product.name
+      - if @next_product
+        %li.item_detail_container__next_item--next
+          = link_to product_path(@next_product) do
+            = @next_product.name
+            = icon 'fas', 'chevron-right'
+    .item_detail_container__sns_box
+      %ul.item_detail_container__sns_box__sns_icons
+        %li
+          = link_to '' do
+            = icon 'fab', 'facebook-square'
+        %li
+          = link_to '' do
+            = icon 'fab', 'twitter-square'
+        %li
+          = link_to '' do
+            = icon 'fab', 'line'
+        %li
+          = link_to '' do
+            = icon 'fab', 'pinterest-square'
+
+  - if @user_products.present?
+    .item_detail_container__user_anoter_items
+      %h2.item_detail_container__user_anoter_items__title
+        = link_to '' do
+          = @product.user.nickname + 'さんのその他の出品'
+      .item_detail_container__user_anoter_items__container
+        = render partial: "products/products_more", collection: @user_products, limit: 6
+  - if @category_products.present?
+    .item_detail_container__user_anoter_items
+      %h2.item_detail_container__user_anoter_items__title
+        = link_to '' do
+          = @product.category.name + ' その他の商品'
+      .item_detail_container__user_anoter_items__container
+        = render partial: "products/products_more", collection: @category_products, limit: 6
+
+.nav_item
+  %ul.nav_item__lists
+    %li.nav_item__lists__list
+      = link_to root_path do
+        %span メルカリ
+      = icon 'fas', 'chevron-right', class: 'nav__lists__list--icon'
+    %li.nav_item__lists__list.nav_item__lists__list--item
+      %span
+        = @product.name
+    
+= render 'shared/appbanner'
+  
+= render 'shared/footer'

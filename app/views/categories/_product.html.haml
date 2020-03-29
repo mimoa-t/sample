@@ -1,0 +1,9 @@
+%li.content
+  = link_to "/products/#{product.id}" do
+    .content__image
+      = image_tag 'image', height: '188px', width: '188px', class: 'content__icon'
+      .content__image--price
+        = number_to_currency(product.price, unit: "￥", format: "%u%n")
+    .content__item-name
+      .content__item-name--text
+        = product.name

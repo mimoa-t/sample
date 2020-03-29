@@ -1,0 +1,61 @@
+= render 'shared/header'
+
+-# 過去の取引
+
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      - breadcrumb :purchased
+      = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right nav__lists__list--icon ' )} "
+
+
+.purchased.clearfix
+  .purchased__right
+    .purchased__right--header
+      %h2 購入した商品
+    .purchased__right--content
+      %ul.purchased-content__tabs
+        %li.content__tabs
+          = link_to purchase_products_path do
+            %h3
+              取引中
+        %li.content__tabs.active
+          %h3
+            過去の取引
+      .purchased-content__lists
+        - if @purchased_products.present?
+          %ul.content__lists
+            %li.content__lists--list
+              - @products.each do |product|
+                - if product.status.id == 4
+                  = link_to product_path(product) do
+                    .list
+                      .list__image
+                        - images = Image.where(product_id: product.id)
+                        - product_image = images.first
+                        = image_tag product_image.image.to_s
+                      .list__text
+                        .list__text--name
+                          = product.name
+                        - if product.status.id == 4
+                          .list__text--status
+                            .status-purchased
+                              %span
+                              = product.status.name
+                      = icon 'fas', 'chevron-right'
+            %li.content__lists--all
+              = link_to '', {class: 'mypage__lists'} do
+                一覧をみる
+        - else
+          %ul.content__lists.show
+            %li.content__lists__list--notfound
+              %span 現在、やることリストはありません
+      
+
+  =render 'users/sidebar'
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+
+= render 'shared/footer'

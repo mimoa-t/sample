@@ -1,0 +1,52 @@
+= render 'shared/header'
+
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      = link_to root_path do
+        %span メルカリ
+      = icon 'fas', 'chevron-right', class: 'nav__lists__list--icon'
+    %li.nav__lists__list.nav__lists__list--mypage
+      = link_to users_path do
+        %span マイページ
+      = icon 'fas', 'chevron-right', class: 'nav__lists__list--icon'
+    %li.nav__lists__list.nav__lists__list--payment
+      %span 支払い方法
+
+.main
+  .main__right_contents
+    .registration_card
+      .information
+        .information__head
+          クレジットカード情報入力
+        .information__main
+          = form_tag(create_card_users_path, method: :post, id: "card_form" , name: 'card_form') do
+            .form--box
+              = label :card_number, 'カード番号', class: 'information__main--label'
+              %span.form-require 必須
+              = text_field_tag :card_number, "", class: 'information__main--form card_number', placeholder: '半角数字のみ', id: 'card_number', name: 'card_number'
+            .form--box
+              = label :expiration_month, '有効期限', class: 'information__main--label'
+              %span.form-require 必須 <br>
+              = text_field_tag :expiration_month, "", class: 'information__main--form select expiration_month', placeholder: '01', id: 'expiration_month', name: 'expiration_month'
+              %span.date 月
+              = text_field_tag :expiration_year, "", class: 'information__main--form select expiration_year', placeholder: '19', id: 'expiration_year', name: 'expiration_year'
+              %span.date 年
+            .form--box
+              = label :security_code, 'セキュリティーコード', class: 'information__main--label'
+              %span.form-require 必須
+              = password_field_tag :security_code, "", class: 'information__main--form cvc', placeholder: 'カード背面４桁もしくは３桁の番号', id: 'security_code', name: 'security_code'
+            %p.text-right
+              = link_to '' , class: 'reason__link' do
+                = icon 'fas', 'question-circle'
+                カード裏面の番号とは？
+            #card_token
+            = submit_tag '登録する', class: 'information__main--button', id: "token_submit"
+
+  = render 'sidebar'
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+
+= render 'shared/footer'

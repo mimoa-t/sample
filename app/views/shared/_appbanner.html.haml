@@ -1,0 +1,17 @@
+.appbanner.clearfix
+  .content
+    .content__text
+      %h2 スマホでかんたんフリマアプリ
+      %p 今すぐ無料ダウンロード！
+      .content__text--icon.clearfix
+        .content__text--icon--app
+          = image_tag "logo_red.svg", width: 68, alt: "app-img"
+        %ul
+          %li.banner
+            = link_to "https://itunes.apple.com" do
+              = image_tag "app-store.svg", alt: "appstore-logo"
+          %li.banner.google
+            = link_to "https://play.google.com" do
+              = image_tag "google-play.svg", alt: "googleplay-logo"
+    .content__figure
+      = image_tag "appbanner_figure.jpg", height: 300

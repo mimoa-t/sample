@@ -1,0 +1,23 @@
+= render 'shared/header'
+
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      - breadcrumb :check_cellphone
+      = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right nav__lists__list--icon ' )} "
+
+.main.clearfix
+  .main__rights
+    .main__rights__header
+      完了
+    .main__rights__contents
+      %p.main__rights__contents--cellphone
+        確認済みです
+
+  = render 'sidebar'
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+
+= render 'shared/footer'

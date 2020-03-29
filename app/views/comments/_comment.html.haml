@@ -1,0 +1,33 @@
+- if comment.user != current_user
+  %li
+    .message_list__user
+      .message_list__user--icon
+        = image_tag 'human.svg'
+      .message_list__user--name
+        = comment.user.nickname
+    .message_list__box
+      .message_list__box--text
+        = comment.comment
+      .message_list__box--date
+        = icon 'far', 'clock'
+        %span
+          = time_ago_in_words(comment.created_at) + "前"
+      = icon 'fas', 'caret-left', class:'icon_bubble'
+- else
+  %li
+    .message_list__user.current_user
+      .message_list__user--name.current_user
+        = comment.user.nickname
+      .message_list__user--icon
+        = image_tag 'human.svg'
+    .message_list__box.current_user
+      .message_list__box--text
+        = comment.comment
+      .message_list__box--date
+        = icon 'far', 'clock'
+        %span
+          = time_ago_in_words(comment.created_at) + "前"
+      .message_list__box--trash
+        = button_to product_comment_path(comment.product_id, comment.id), method: :delete do
+          = icon 'fas', 'trash-alt'
+      = icon 'fas', 'caret-right', class:'icon_bubble'

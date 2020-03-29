@@ -1,0 +1,81 @@
+.main {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  margin: 40px auto 0;
+  padding: 0 0 40px;
+  &--profile_contents {
+    background-color: #fff;
+    width: 700px;
+    height: 100%;
+    &__title {
+      padding: 8px 24px;
+      h1 {
+        text-align: center;
+        color: #333333;
+        font-size: 24px;
+        line-height: 1.4;
+      }
+    }
+    &__user_name {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 72px 16px 24px;
+      background: url("mypage-back.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      text-align: center;
+      font-size: 0;
+      img {
+        width: 60px;
+        border-radius: 50%;
+      }
+      input {
+        height: 48px;
+        width: 220px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #ffffff;
+        font-size: 16px;
+        margin: 0 0 0 8px;
+        &:focus {
+          border: 1px solid #0099e8;
+          outline: 0;
+        }
+        }
+    }
+    &__user_message {
+      padding: 40px 16px;
+      .profile_message {
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        height: 216px;
+        min-height: 104px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background: #ffffff;
+        font-size: 16px;
+        line-height: 1.5;
+        border-radius: 0;
+        &:focus {
+          border: 1px solid #0099e8;
+          outline: 0;
+        }
+      }
+      .button {
+        background: #ea352d;
+        border: 1px solid #ea352d;
+        color: #ffffff;
+        width: 100%;
+        line-height: 48px;
+        text-align: center;
+        margin: 16px 0 0;
+        display: block;
+        font-size: 14px;
+      }
+    }
+  }
+}

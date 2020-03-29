@@ -1,0 +1,28 @@
+= render 'shared/header'
+
+-# パンくず
+
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      - breadcrumb :logout
+      = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right nav__lists__list--icon ' )} "
+
+-# メイン
+
+.main.clearfix
+  .main__right
+    .main__right__top
+      .main__right__top__content.main__right__top__content--logout
+        .content__button
+          = link_to users_sign_out_path, method: :delete do
+            %button{type: 'submit'} ログアウト
+            %input{type: 'hidden'}
+
+  = render 'sidebar'
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+
+= render 'shared/footer'

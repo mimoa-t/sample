@@ -1,0 +1,21 @@
+@import "config/colors";
+
+.notification {
+  .notice {
+    background-color: rgba(142, 255, 142, 0.342);
+    color: darkgreen;
+    text-align: center;
+    height: 60px;
+    font-size: 16px;
+    padding-top: 20px;
+  }
+
+  .alert {
+    background-color: rgba(255, 68, 0, 0.219);
+    color: red;
+    text-align: center;
+    height: 60px;
+    font-size: 16px;
+    padding-top: 20px;
+  }
+}

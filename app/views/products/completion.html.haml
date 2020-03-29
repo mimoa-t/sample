@@ -1,0 +1,31 @@
+.sell-completion
+  .sell-completion__text
+    %div
+      %p
+        出品が完了しました
+  .sell-completion__btn-box
+    %div
+      %p
+        あなたが出品した商品は「出品した一覧」からいつでも見ることができます。
+    = link_to new_product_path, class: 'sell-completion__btn-default sell-completion__btn-red' do
+      続けて出品する
+    = link_to root_path, class: 'sell-completion__btn-default sell-completion__btn-gray' do
+      トップページへもどる
+
+.sell-footer
+  %nav
+    %ul.clearfix
+      %li
+        = link_to '' do
+          プライバシーポリシー
+      %li
+        = link_to '' do
+          メルカリ利用規約
+      %li
+        = link_to '' do
+          特定商取引に関する表記
+  = link_to root_path, class: 'sell-footer__logo' do
+    = image_tag 'logo_gray.svg', alt: 'mercari', height: '65', width: '80'
+  %p
+    %small
+      © Mercari, Inc.

@@ -1,0 +1,33 @@
+.nav {
+  position: relative;
+  background-color: white;
+  border-top: solid 1px #eee;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  &__lists {
+    width: 1020px;
+    margin: 0 auto;
+    padding: 15px 0;
+    &__list {
+      font-size: 14px;
+      line-height: 1.2;
+      display: inline;
+      a {
+        display: inline-block;
+        position: relative;
+        color: #333;
+        &:hover {
+          text-decoration: underline;
+          color: #888;
+        }
+      }
+      span {
+        font-weight: bold;
+      }
+      &--icon {
+        margin: 0 8px;
+        font-size: 9px;
+        color: #888;
+      }
+    }
+  }
+}

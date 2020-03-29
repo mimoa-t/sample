@@ -1,0 +1,99 @@
+.main__side
+  %ul
+    %li.main__side__lists
+      =link_to users_path do
+        マイページ
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to '' do
+        お知らせ
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to '' do
+        やることリスト
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to '' do
+        いいね！一覧
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to new_product_path do
+        出品する
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to exhibiting_products_path do
+        出品した商品 - 出品中
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to trading_products_path do
+        出品した商品 - 取引中
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to sold_products_path do
+        出品した商品 - 売却済み
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to purchase_products_path do
+        購入した商品 - 取引中
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to purchased_products_path do
+        購入した商品 - 過去の取引
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to '' do
+        ニュース一覧
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to '' do
+        評価一覧
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to '' do
+        ガイド
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to '' do
+        お問い合わせ
+        = icon 'fas', 'chevron-right'
+  %h3 メルペイ
+  %ul.main__side__lists--middle
+    %li.main__side__lists
+      =link_to '' do
+        売上・振込申請
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to '' do
+        ポイント
+        = icon 'fas', 'chevron-right'
+  %h3 設定
+  %ul.main__side__lists--middle
+    %li.main__side__lists
+      =link_to edit_user_path(current_user) do
+        プロフィール
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to change_address_users_path(current_user) do
+        発送元・お届け先住所変更
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      //  TO DO:支払い方法パスの仮置き
+      =link_to card_users_path(:id) do
+        支払い方法
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to change_password_users_path do
+        メール/パスワード
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to identification_users_path(:id), {controller: "users", action: "index", name: "identification"} do
+        本人情報
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists
+      =link_to check_cellphone_users_path do
+        電話番号の確認
+        = icon 'fas', 'chevron-right'
+    %li.main__side__lists.main__side__lists--logout
+      =link_to logout_users_path(current_user), {controller: "users", action: "index", name: "logout"} do
+        ログアウト
+        = icon 'fas', 'chevron-right'

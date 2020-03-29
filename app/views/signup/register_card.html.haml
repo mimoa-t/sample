@@ -1,0 +1,64 @@
+.registration_card
+  .registration_card__header
+    %ul.registration_card__header__logo
+      =link_to root_path do
+        =image_tag "fmarket_logo_red.svg", height: 52
+    %ul.registration_card__header__bar
+      %ol.clearfix
+        %li.through
+          会員情報
+          .progress-status
+        %li.through-two
+          電話番号認証
+          .progress-status
+        %li.through-two
+          住所入力
+          .progress-status
+        %li.active
+          支払い方法
+          .progress-status
+        %li.complete-page
+          完了
+          .progress-status
+  .registration_card__main
+    .information
+      .information__head
+        支払い方法
+      .information__main
+        = form_for(@user, url: signup_index_path, method: :post, name: 'card_form', html: {id: "card_form" }) do |f|
+          = f.fields_for :card do |b|
+            .form--box
+              = b.label :card_number, 'カード番号', class: 'information__main--label'
+              %span.form-require 必須
+              = b.text_field :card_number, class: 'information__main--form card_number', placeholder: '半角数字のみ', id: 'card_number', name: 'card_number'
+              = render partial: 'error_messages', locals: {user: @user, column: 'card_number'}
+            .form--box
+              = b.label :expiration_month, '有効期限', class: 'information__main--label'
+              %span.form-require 必須 <br>
+              = b.text_field :expiration_month, class: 'information__main--form select expiration_month', placeholder: '01', id: 'expiration_month', name: 'expiration_month'
+              %span.date 月
+              = b.text_field :expiration_year, class: 'information__main--form select expiration_year', placeholder: '19', id: 'expiration_year', name: 'expiration_year'
+              %span.date 年
+              = render partial: 'error_messages', locals: {user: @user, column: 'expiration_month'}
+              = render partial: 'error_messages', locals: {user: @user, column: 'expiration_year'}
+            .form--box
+              = b.label :security_code, 'セキュリティーコード', class: 'information__main--label'
+              %span.form-require 必須
+              = b.password_field :security_code, class: 'information__main--form cvc', placeholder: 'カード背面４桁もしくは３桁の番号', id: 'security_code', name: 'security_code'
+              = render partial: 'error_messages', locals: {user: @user, column: 'security_code'}
+            %p.text-right
+              = link_to '' , class: 'reason__link' do
+                = icon 'fas', 'question-circle'
+                カード裏面の番号とは？
+          #card_token
+          = f.submit '次へ進む', class: 'information__main--form--button', id: "token_submit"
+  .registration_card__footer
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      プライバシーポリシー  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      メルカリ利用規約  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      特定商取引に関する表記
+      .footer__logo
+        = link_to root_path do
+          = image_tag "logo_gray.svg", height: 80

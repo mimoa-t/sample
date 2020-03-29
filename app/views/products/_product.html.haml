@@ -1,0 +1,11 @@
+%li.toppage-main__content
+  = link_to "/products/#{product.id}" do
+    .toppage-main__image
+      - images = Image.where(product_id: product.id)
+      - product_image = images.first
+      = image_tag product_image.image.to_s, height: '188px', width: '188px', class: 'toppage-main__icon'
+      .toppage-main__image--price
+        = number_to_currency(product.price, unit: "￥", format: "%u%n")
+    .toppage-main__item-name
+      .toppage-main__item-name--text
+        = product.name

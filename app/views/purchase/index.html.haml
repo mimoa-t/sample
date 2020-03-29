@@ -1,0 +1,96 @@
+.header__purchase
+  =link_to root_path do
+    = image_tag "fmarket_logo_red.svg", class: "header--icon", width: 185, height:49
+.main-buy
+  .main-buy__box
+    .main-buy__box__title
+      購入内容の確認
+    .main-buy__box__products
+      .main-buy__box__products__form
+        = link_to '' do
+          - images = Image.where(product_id: @product.id)
+          - product_image = images.first
+          = image_tag product_image.image.to_s, height: '80px', width: '80px'
+        .main-buy__box__products__form__text
+          .main-buy__box__products__form__text__name
+            = @product.name
+          .main-buy__box__products__form__text__price
+            = number_to_currency(@product.price, unit: "￥", format: "%u%n")
+            %span （税込み）送料込み
+    .main-buy__box__pay
+      .main-buy__box__pay__form
+        .main-buy__box__pay__form__price
+          .main-buy__box__pay__form__price__left
+            支払い金額
+          .main-buy__box__pay__form__price__right
+            = number_to_currency(@product.price, unit: "￥", format: "%u%n")
+        -# ポイント機能は未実装のためコメントアウト
+        -# .main-buy__box__pay__form__point
+        -#   %input{type: "checkbox"}
+        -#   .main-buy__box__pay__form__point__text
+        -#     ポイントを使用 (所持ポイント: P0)
+        .main-buy__box__pay__form__card
+          .main-buy__box__pay__form__card__title
+            .main-buy__box__pay__form__card__title__left
+              支払い方法
+            .main-buy__box__pay__form__card__title__right
+              - if @card.blank?
+                = link_to "クレジットカードを登録する", register_card_users_path, target: :_blank
+              - else
+                = link_to '変更する', register_card_users_path, target: :_blank
+          - if @card
+            .main-buy__box__pay__form__card__text
+              %p  クレジットカード
+              %p
+                = "**** **** **** " + @card.last4
+              %p 
+                = "有効期限" + @exp_month + " / " + @exp_year
+            .main-buy__box__pay__form__card__image
+              = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?73731125", width: 49, height: 15
+        .main-buy__box__pay__form__user
+          .main-buy__box__pay__form__user__title
+            .main-buy__box__pay__form__user__title__left
+              配送先
+            .main-buy__box__pay__form__user__title__right 
+              = link_to '変更する', change_address_users_path, target: :_blank
+          .main-buy__box__pay__form__user__text
+            %p
+              = '〒' + @postcode
+            %p
+              - if @address.building
+                = @address.prefecture + @address.municipality + @address.address + @address.building
+              - else
+                = @address.prefecture + @address.municipality + @address.address
+            %p
+              = current_user.familyname + current_user.firstname
+        .main-buy__box__pay__form__note
+          .main-buy__box__pay__form__note__button
+            = button_to '購入する', {action: :purchase}, class: 'purchase__button'
+          .main-buy__box__pay__form__note__button
+            = button_to "戻る", product_path(params[:product_id]), class: 'purchase__button'
+          .main-buy__box__pay__form__note__bottom
+            %p アプリをお持ちでない方は以下よりインストールして、ご利用いただけます。
+          .main-buy__box__pay__form__note__logos
+            = link_to '' do
+              = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?73731125"
+            = link_to '' do
+              = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?73731125"
+.footer-buy
+  .footer-buy__box
+    .footer-buy__box__text
+      %ul.clearfix
+        %li
+          = link_to '' do
+            プライバシーポリシー
+        %li 
+          = link_to '' do
+            メルカリ利用規約
+        %li 
+          = link_to '' do
+            特定商取引に関する表記
+    .footer-buy__box__icon
+      =link_to root_path do
+        = image_tag "fmarket_logo_red.svg", width: 80, height: 65
+    .footer-buy__box__inc
+      ©freemarket,inc.
+           

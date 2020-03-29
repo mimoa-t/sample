@@ -1,0 +1,145 @@
+.search-result {
+  width: 100%;
+  margin: 40px auto 0;
+  .main {
+    position: relative;
+    &__right {
+      float: right;
+      width: 700px;
+      &__contents {
+        height: 573px;
+        width: 100%;
+        &__products {
+          display: flex;
+          flex-wrap: wrap;
+        }
+      }
+      &__title {
+        font-size: 22px;
+        margin: 0 0 8px;
+        .bold {
+          font-weight: bold;
+        }
+      }
+      &__number {
+        margin: 16px 0;
+        font-size: 14px;
+        color: #888;
+      }
+    }
+    &__left {
+      float: left;
+      width: 280px;
+      margin: 0 40px 0 0;
+      position: relative;
+      &__sort {
+        select {
+          background: #fff;
+          text-align: left;
+          top: 50%;
+          z-index: 2;
+          height: 48px;
+          width: 100%;
+          padding: 0 16px;
+          margin-top: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 16px;
+        }
+      }
+      .selectbox {
+        background: #fff;
+        text-align: left;
+        top: 50%;
+        z-index: 2;
+        height: 48px;
+        width: 100%;
+        padding: 0 16px;
+        padding-top: 5px;
+        margin-top: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        position: relative
+        icon {
+          position: absolute;
+          right: 0;
+        }
+      }
+      &__search {
+        background: #fff;
+        padding: 16px;
+        margin: 40px 0 0;
+        &__title {
+          font-size: 16px;
+          font-weight: bold;
+          background: #fff;
+        }
+        &__box {
+          margin-top: 24px;
+          select {
+            background: #fff;
+            text-align: left;
+            top: 50%;
+            z-index: 2;
+            height: 48px;
+            width: 100%;
+            padding: 0 16px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+          }
+          .price {
+            width: 45%
+          }
+          &__label {
+            font-weight: bold;
+            font-size: 14px;
+            vertical-align: middle;
+            margin-top: 24px;
+            i {
+              margin: 0 4px 0 0;
+              color: #888;
+              font-size: 16px;
+              vertical-align: middle;
+            }
+          }
+          &__checkbox {
+            input[type=checkbox] {
+              display: none;
+            }
+            input[type=checkbox] + label:before {
+              display: inline-block;
+              font-family: 'Font Awesome 5 Free';
+              content: "\f0c8";
+              font-size: 25px;
+              color: #666;
+              vertical-align: middle;
+              margin-right: 5px;
+              line-height: 50%;
+            }
+            input[type=checkbox] + label {
+              font-size: 14px;
+              display: inline-block;
+              vertical-align: middle;
+              width: 45%;
+              height: 35px;
+              margin: 10px 0 0 4%;
+            }
+            input[type=checkbox]:checked + label:before {
+              font-family: 'Font Awesome 5 Free';
+              vertical-align: middle;
+              content: "\f14a";
+              color: #28A7E1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+

@@ -1,0 +1,76 @@
+= render 'shared/header'
+
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      - breadcrumb :identification
+      = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right nav__lists__list--icon ' )} "
+
+
+.main.clearfix
+  .identification__main__rights
+    .identification__main__rights__header
+      本人情報の登録
+    .identification__main__rights__contents
+      .identification__main__rights__contents__top
+        .identification__main__rights__contents__top__text
+          %p お客さまの本人情報をご登録ください。
+          %p 登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+        .identification__main__rights__contents__top__sub
+          = link_to '' do
+            %a 本人確認書類のアップロードについて
+          = icon 'fas', 'chevron-right', class: 'icon'
+      .identification__main__rights__contents__form
+        .identification__main__rights__contents__form__box
+          .identification__main__rights__contents__form__box__top
+            お名前
+          .identification__main__rights__contents__form__box__bottom
+            = current_user.familyname + current_user.firstname
+        .identification__main__rights__contents__form__box
+          .identification__main__rights__contents__form__box__top
+            お名前カナ
+          .identification__main__rights__contents__form__box__bottom
+            = current_user.familyname_kana + current_user.firstname_kana
+        .identification__main__rights__contents__form__box    
+          .identification__main__rights__contents__form__box__top
+            生年月日
+          .identification__main__rights__contents__form__box__bottom
+            = current_user.birthday
+
+        = form_for(current_user) do |f|
+          = f.fields_for :address do |b|
+            .identification__main__rights__contents__form__box
+              = b.label :postcode, '郵便番号', class: 'identification__main__rights__contents__form__box__top'
+              %span.form-optional 任意
+              = b.text_field :postcode, value: @address.postcode
+            .identification__main__rights__contents__form__box
+              = b.label :prefecture, '都道府県', class: 'identification__main__rights__contents__form__box__top'
+              %span.form-optional 任意
+              = b.text_field :prefecture, value: @address.prefecture
+            .identification__main__rights__contents__form__box
+              = b.label :municipality, '市区町村', class: 'identification__main__rights__contents__form__box__top'
+              %span.form-optional 任意
+              = b.text_field :municipality, value: @address.municipality
+            .identification__main__rights__contents__form__box
+              = b.label :address, '番地', class: 'identification__main__rights__contents__form__box__top'
+              %span.form-optional 任意
+              = b.text_field :address, value: @address.address
+            .identification__main__rights__contents__form__box
+              = b.label :building, '建物名', class: 'identification__main__rights__contents__form__box__top'
+              %span.form-optional 任意
+              = b.text_field :building, value: @address.building
+          .identification__main__rights__contents__form__box
+            = f.submit '登録する', class: 'form--button'
+
+        .identification__main__rights__contents__form__sub
+          = link_to '' do
+            本人情報の登録について
+          = icon 'fas', 'chevron-right', class: 'icon'
+
+  = render 'sidebar'
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+
+= render 'shared/footer'

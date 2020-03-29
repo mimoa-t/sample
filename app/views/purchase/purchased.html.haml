@@ -1,0 +1,65 @@
+.sell-container
+  .sell-header
+    %h1
+      =link_to root_path do
+        = image_tag "fmarket_logo_red.svg"
+
+  .soldout-main
+    .soldout-main__attention
+      %h3
+        = icon 'far', 'clock', class: 'soldout-clock'
+        %span 発送をお待ちください
+      %p 出品者からの発送通知をお待ちください
+    .soldout-main__complete
+    %h2 購入が完了しました
+    .soldout-main__product
+      - images = Image.where(product_id: @product.id)
+      - product_image = images.first
+      = image_tag product_image.image.to_s, class: 'soldout_product_img'
+      .soldout-main__product__detail
+        %p.product__name
+          = @product.name
+        .product__pricebox
+          %span.product__pricebox__price
+            = number_to_currency(@product.price, unit: "￥", format: "%u%n")
+          %span.product__pricebox__tax（税込）送料込み
+    .underline
+    .soldout-main__payment
+      %h3 支払い金額
+      %span.payment_price
+        = number_to_currency(@product.price, unit: "￥", format: "%u%n")
+    .underline
+    .soldout-main__shipping_adress
+      %h3 配送先
+      %p
+        = '〒' + @postcode
+      %p
+        - if @address.building
+          = @address.prefecture + @address.municipality + @address.address + @address.building
+        - else
+          = @address.prefecture + @address.municipality + @address.address
+      %p
+        = current_user.familyname + current_user.firstname
+    .underline
+    .soldout-main__payment_card
+      %h3 支払い方法
+      %p
+        = "**** **** **** " + @card.last4
+      %p
+        = @exp_month + " / " + @exp_year
+      = icon 'far', 'credit-card'
+    .underline
+    .soldout-main__after_message
+      %h3 発送通知後の流れ
+      .soldout-main__after_message__icon
+        = icon 'far', 'stars', class: 'far fa-star'
+        = icon 'fas', 'grin', class: 'item_rate--good'
+        = icon 'fas', 'meh', class: 'item_rate--normal'
+        = icon 'fas', 'frown', class: 'item_rate--bad'
+        = icon 'far', 'stars', class: 'far fa-star'
+      %p 商品を受け取ったら
+      %p 出品者の評価をしましょう。
+      %p 購入代金が出品者に振り込まれます。
+      %p.last-child 評価後に取引は完了です。
+      = link_to users_path do
+        マイページへ戻る

@@ -1,0 +1,55 @@
+.complete_registration
+  .complete_registration__header
+    %ul.complete_registration__header__logo
+      =link_to '' do
+        =image_tag "fmarket_logo_red.svg", height: 52
+    %ul.complete_registration__header__bar
+      %ol.clearfix
+        %li.through
+          会員情報
+          .progress-status
+        %li.through-two
+          電話番号認証
+          .progress-status
+        %li.through-two
+          住所入力
+          .progress-status
+        %li.through-two
+          支払い方法
+          .progress-status
+        %li.active
+          完了
+          .progress-status
+  .complete_registration__main
+    .information
+      .information__head
+        会員登録完了
+      .information__main
+        %li.information__main--message
+          ありがとうございます。
+        %li.information__main--message
+          会員登録が完了しました。
+        = link_to 'メルカリをはじめる', root_path, class: 'information__main--button'
+      .information__foot
+        .content
+          .content__figure
+            = image_tag "appbanner_figure.jpg", height: 300
+            %h1 スマホでかんたんフリマアプリ
+            %h2 今すぐ無料ダウンロード！
+            .banner--apple
+              = link_to "https://itunes.apple.com" do
+                = image_tag "app-store.svg", alt: "appstore-logo"
+            .banner--google
+              = link_to "https://play.google.com" do
+                = image_tag "google-play.svg", alt: "googleplay-logo"
+        
+  .complete_registration__footer
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      プライバシーポリシー  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      メルカリ利用規約  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      特定商取引に関する表記
+      .footer__logo
+        =link_to '' do
+          =image_tag "logo_gray", height: 80

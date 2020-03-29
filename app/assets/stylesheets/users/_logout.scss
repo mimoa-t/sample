@@ -1,0 +1,26 @@
+.main__right__top__content.main__right__top__content--logout {
+  background-color: #fff;
+  padding: 64px;
+  .content__button {
+    max-width: 320px;
+    margin: 0 auto;
+    button {
+      background: #ea352d;
+      border: 1px solid #ea352d;
+      color: #fff;
+      display: block;
+      width: 100%;
+      line-height: 48px;
+      font-size: 14px;
+      transition: all ease-out .3s;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+}
+
+.main__side__lists--logout {
+  background: #eee;
+  // font-weight: bold;
+}
+

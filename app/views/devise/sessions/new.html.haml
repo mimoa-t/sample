@@ -1,0 +1,42 @@
+.user_login
+  .user_login__header
+    .user_login__header__logo
+      =link_to root_path do
+        =image_tag "fmarket_logo_red", height: 49
+  .user_login__main
+    .login
+      .login__no-account
+        %p
+          アカウントをお持ちでない方はこちら
+        %button.login__no-account--button
+          = link_to signup_index_path do
+            新規会員登録
+      .login__form
+        = link_to user_facebook_omniauth_authorize_path, method: "post", class: 'login__btn login__btn--facebook' do
+          = icon 'fab', 'facebook-square', class: 'login__btn--facebook--icon'
+          Facebookでログイン
+        = link_to user_google_oauth2_omniauth_authorize_path, method: "post", class: 'login__btn login__btn--google' do
+          = icon 'fab', 'google', class: 'login__btn--google--icon'
+          Googleでログイン
+
+        .login__mail
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .login__mail--form
+              = f.text_field :email, placeholder: 'メールアドレス', class: 'form--textfield'
+            .login__mail--form
+              = f.password_field :password, placeholder: 'パスワード', class: 'form--textfield'
+            = f.submit 'ログイン', class: 'login__mail--button'
+          %p.login__mail--forget
+            = link_to '' , class: 'login__mail--forget' do
+              パスワードをお忘れの方
+
+  .user_login__footer
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      プライバシーポリシー  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      メルカリ利用規約  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      特定商取引に関する表記
+      .user_login__footer__logo
+        =link_to '' do
+          =image_tag "logo_gray", height: 80

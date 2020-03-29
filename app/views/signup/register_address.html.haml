@@ -1,0 +1,91 @@
+.registration_address
+  .registration_address__header
+    %ul.registration_address__header__logo
+      =link_to root_path do
+        =image_tag "fmarket_logo_red.svg", height: 52
+    %ul.registration_address__header__bar
+      %ol.clearfix
+        %li.through
+          会員情報
+          .progress-status
+        %li.through-two
+          電話番号認証
+          .progress-status
+        %li.active
+          住所入力
+          .progress-status
+        %li.credit-page
+          支払い方法
+          .progress-status
+        %li.complete-page
+          完了
+          .progress-status
+
+  .registration_address__main
+    .information
+      .information__head
+        住所入力
+      .information__main
+        = form_for @user, url: register_card_signup_index_path do |f|
+          .form--box
+            = f.label :name, 'お名前', class: 'information__main--label'
+            %span.form-require 必須
+            = f.text_field :familyname, class: 'information__main--form', placeholder: '例) 山田'
+            = render partial: 'error_messages', locals: {user: @user, column: 'familyname'}
+            = f.text_field :firstname, class: 'information__main--form', placeholder: '例) 彩'
+            = render partial: 'error_messages', locals: {user: @user, column: 'firstname'}
+          .form--box
+            = f.label :name_kana, 'お名前カナ', class: 'information__main--label'
+            %span.form-require 必須
+            = f.text_field :familyname_kana, class: 'information__main--form', placeholder: '例) ヤマダ'
+            = render partial: 'error_messages', locals: {user: @user, column: 'familyname_kana'}
+            = f.text_field :firstname_kana, class: 'information__main--form', placeholder: '例) アヤ'
+            = render partial: 'error_messages', locals: {user: @user, column: 'firstname_kana'}
+
+          = f.fields_for :address do |b|
+            .form--box
+              = b.label :postcode, '郵便番号', class: 'information__main--label'
+              %span.form-require 必須
+              = b.text_field :postcode, class: 'information__main--form', placeholder: '1234567'
+              = render partial: 'error_messages', locals: {user: @user, column: 'postcode'}
+            .form--box
+              = b.label :prefecture, '都道府県', class: 'information__main--label'
+              %span.form-require 必須
+              = b.text_field :prefecture, class: 'information__main--form', placeholder: '北海道'
+              = render partial: 'error_messages', locals: {user: @user, column: 'prefecture'}
+            .form--box
+              = b.label :municipality, '市区町村', class: 'information__main--label'
+              %span.form-require 必須
+              = b.text_field :municipality, class: 'information__main--form', placeholder: '例) 横浜市緑区'
+              = render partial: 'error_messages', locals: {user: @user, column: 'municipality'}
+            .form--box
+              = b.label :address, '住所', class: 'information__main--label'
+              %span.form-require 必須
+              = b.text_field :address, class: 'information__main--form', placeholder: '例) 青山1−1−1'
+              = render partial: 'error_messages', locals: {user: @user, column: 'address'}
+            .form--box
+              = b.label :building, '建物名', class: 'information__main--label'
+              %span.form-optional 任意
+              = b.text_field :building, class: 'information__main--form', placeholder: '例) 柳ビル103'
+          .form--box
+            = f.label :phone, '電話', class: 'information__main--label'
+            %span.form-optional 任意
+            = f.text_field :phone, class: 'information__main--form', placeholder: '例) 09012345678'
+          .form--box
+            = f.label :birthday, '誕生日', class: 'information__main--label', start_year: 1990
+            %span.form-require 必須 <br>
+            != sprintf(f.date_select(:birthday, prefix:'birthday', class:'information__main--form select', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1930, date_separator:'%s'),'年','月')+'日'
+            = render partial: 'error_messages', locals: {user: @user, column: 'birthday'}
+          .form--box
+            = f.submit '次へ進む', class: 'information__main--form--button'
+
+  .registration_address__footer
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      プライバシーポリシー  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      メルカリ利用規約  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      特定商取引に関する表記
+      .registration_address__footer__logo
+        =link_to '' do
+          =image_tag "logo_gray.svg", height: 80

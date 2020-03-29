@@ -1,0 +1,45 @@
+= render 'shared/header'
+
+-# ユーザー編集
+.nav
+  %ul.nav__lists
+    %li.nav__lists__list
+      - breadcrumb :card
+      = breadcrumbs separator: " #{content_tag(:i, '', class: 'fas fa-chevron-right nav__lists__list--icon ' )} "
+
+.main
+  .main__right_contents
+    .main__right_contents--title
+      %h1 支払い方法
+    .main__right_contents__inner
+      .main__right_contents__inner--title.container
+        %h3 クレジットカード一覧
+      - if @card
+        .main__right_contents__inner__list.container
+          .main__right_contents__inner__list__box
+            = icon 'far', 'credit-card'
+            .main__right_contents__inner__list__box--pay_num
+              %p 
+                = "**** **** **** " + @card_information.last4
+            .main__right_contents__inner__list__box--pay_num
+              %p
+                = @exp_month + '/' + @exp_year
+            .main__right_contents__inner__list__box--button
+              = button_to delete_card_users_path, method: :delete, class: 'delete_btn' do
+                削除する
+      - else
+        .main__right_contents__inner__list.container
+          .main__right_contents__inner__list--button
+            = link_to 'クレジットカードを追加する', register_card_users_path, class: 'register_btn'
+        .main__right_contents__inner--bottom
+          = link_to '' do
+            支払い方法について 
+            = icon 'fas', 'angle-right', class: 'icon'
+          
+  = render 'sidebar'
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+
+= render 'shared/footer'

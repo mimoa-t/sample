@@ -1,0 +1,72 @@
+.appbanner {
+  margin-top: auto;
+  background: no-repeat image-url("appbanner_background.jpg");
+  background-position: center;
+  background-size: cover;
+  .content {
+    height: 260px;
+    margin: 0 auto;
+    width: 750px;
+    display: flex;
+    justify-content: space-between;
+    &__text {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h2 {
+        font-size: 24px;
+        line-height: 1.4;
+        margin-top: 40px;
+        margin-bottom: 15px;
+      }
+      p {
+        font-size: 35px;
+        margin-bottom: 20px;
+      }
+      &--icon {
+        &--app {
+          position: relative;
+          background-color: white;
+          float: left;
+          width: 68px;
+          height: 68px;
+          margin-right: 25px;
+          border-radius: 15px;
+          img {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 8px;
+            left: 9px;
+          }
+        }
+        ul {
+          .banner {
+            float: left;
+            img {
+              width: 130px;
+              margin-top: 20px;
+              margin-right: 20px;
+            }
+          }
+          .google {
+            img {
+              width: 130px;
+              margin-top: 20px;
+              margin-right: 20px;
+            }
+          }
+        }
+      }
+    }
+    &__figure {
+      display: block;
+      img {
+        height: 260px;
+        width: 230px;
+        vertical-align: middle;
+      }
+    }
+  }
+}

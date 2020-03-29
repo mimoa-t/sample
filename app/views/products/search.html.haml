@@ -1,0 +1,86 @@
+= render 'shared/header'
+
+.search-result
+  .main
+    .main__right
+      .main__right__title
+        %span.bold
+          = @keyword
+        %span の検索結果
+      .main__right__number
+        = page_entries_info @products, entry_name: '商品'
+      .main__right__contents
+        %ul.main__right__contents__products
+          = render partial: "products/product", collection: @products
+        = paginate(@products)
+
+    .main__left
+      .main__left__sort
+        = form_tag('', method: :get) do
+          = select_tag('', options_for_select([["価格の安い順","1"], ["価格の高い順","2"], ["出品の新しい順","3"], ["いいね！の多い順","4"]]), prompt: '並び替え')
+      .main__left__search
+        = form_tag('', method: :get) do
+          %h3.main__left__search__title
+            詳細検索
+          .main__left__search__box
+            .main__left__search__box__label
+              = icon 'fas', 'plus'
+              %span キーワードを追加する
+            = text_field_tag 'keyword', '', class: 'selectbox', placeholder: '例）値下げ'
+          .main__left__search__box
+            .main__left__search__box__label
+              = icon 'fas', 'list-ul'
+              %span カテゴリーを選択する
+            = collection_select(:category_id, :name, @categories, :id, :name, {include_blank: true, prompt: 'すべて'})
+          .main__left__search__box
+            .main__left__search__box__label
+              = icon 'fas', 'tag'
+              %span ブランド名から探す
+            = text_field_tag 'brand', '', class: 'selectbox', placeholder: '例）シャネル'
+          .main__left__search__box
+            .main__left__search__box__label
+              = icon 'fas', 'expand'
+              %span サイズを指定する
+            = text_field_tag 'size', '', class: 'selectbox'
+          .main__left__search__box
+            .main__left__search__box__label
+              = icon 'fas', 'coins'
+              %span 価格
+            = select_tag('price', options_for_select([["300〜1000","1"], ["1000〜5000","2"], ["5000〜10000","3"], ["10000〜30000","4"], ["30000〜50000","5"], ["50000〜","6"]]), prompt: '')
+            = text_field_tag 'low_price', '', class: 'selectbox price', placeholder: '¥ Min'
+            %span 〜
+            = text_field_tag 'high_price', '', class: 'selectbox price', placeholder: '¥ Max'
+          .main__left__search__box
+            .main__left__search__box__label
+              = icon 'fas', 'star'
+              %span 商品の状態
+            .main__left__search__box__checkbox
+              %input{type: "checkbox", name: "#", value: "1", id: "all_states"}
+              %label{for: "all_states", class: "label"} すべて
+              = collection_check_boxes(:state_id, :name, @states, :id, :name)
+          .main__left__search__box
+            .main__left__search__box__label
+              = icon 'fas', 'truck'
+              %span 配送料の負担
+            .main__left__search__box__checkbox
+              %input{type: "checkbox", name: "#", value: "1", id: "all_charges"}
+              %label{for: "all_charges", class: "label"} すべて
+              = collection_check_boxes(:delivery_charge_id, :name, @delivery_charges, :id, :name)
+          .main__left__search__box
+            .main__left__search__box__label
+              = icon 'fas', 'shopping-cart'
+              %span 販売状況
+            .main__left__search__box__checkbox
+              %input{type: "checkbox", name: "#", value: "1", id: "all_status"}
+              %label{for: "all_status", class: "label"} すべて
+              %input{type: "checkbox", name: "#", value: "2", id: "sell"}
+              %label{for: "sell", class: "label"} 販売中
+              %input{type: "checkbox", name: "#", value: "3", id: "sold"}
+              %label{for: "sold", class: "label"} 売り切れ
+          .main__left__search__box--btns
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+  
+= render 'shared/footer'

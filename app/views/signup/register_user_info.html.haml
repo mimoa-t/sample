@@ -1,0 +1,71 @@
+.registration_user_info
+  .registration_user_info__header
+    %ul.registration_user_info__header__logo
+      =link_to root_path do
+        =image_tag "fmarket_logo_red.svg", height: 52
+    %ul.registration_user_info__header__bar
+      %ol.clearfix
+        %li.active
+          会員情報
+          .progress-status
+        %li.phone-page
+          電話番号認証
+          .progress-status
+        %li.address-page
+          住所入力
+          .progress-status
+        %li.credit-page
+          支払い方法
+          .progress-status
+        %li.complete-page
+          完了
+          .progress-status
+
+.registration_user_info__main
+  .information
+    .information__head
+      会員情報入力
+    .information__main
+      = form_for @user, url: register_cellphone_signup_index_path do |f|
+        .form--box
+          = f.label :nickname, "ニックネーム"
+          %span.form-require 必須
+          = f.text_field :nickname, class: 'information__main--form', placeholder: "例)  メルカリ太郎"
+        - if @sns_id.present?
+          = hidden_field_tag :sns_auth, true
+        - else
+          = render partial: 'error_messages', locals: {user: @user, column: 'nickname'}
+        .form--box
+          = f.label :email, "メールアドレス"
+          %span.form-require 必須
+          = f.email_field :email, class: 'information__main--form', placeholder: "PC・携帯どちらでも可"
+        - if @sns_id.present?
+          = hidden_field_tag :sns_auth, true
+        - else
+          = render partial: 'error_messages', locals: {user: @user, column: 'email'}
+        - if @sns_id.present?
+          = hidden_field_tag :sns_auth, true
+        - else
+          .form--box
+            = f.label :password, "パスワード"
+            %span.form-require 必須
+            = f.password_field :password, class: 'information__main--form', placeholder: '英数字混在7文字以上', autocomplete: "new-password"
+            = render partial: 'error_messages', locals: {user: @user, column: 'password'}
+          .form--box
+            = f.label :password_confirmation, "パスワード（確認）", autocomplete: "new-password"
+            %span.form-require 必須
+            = f.password_field :password_confirmation, class: 'information__main--form', placeholder: '英数字混在7文字以上', autocomplete: "new-password"
+            = render partial: 'error_messages', locals: {user: @user, column: 'password_confirmation'}
+        = f.submit "次へ進む", class: 'information__main--form--button'
+
+
+  .registration_user_info__footer
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      プライバシーポリシー  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      メルカリ利用規約  
+    = link_to "https://www.google.com/", class: 'footer__link' do
+      特定商取引に関する表記
+      .registration_user_info__footer__logo
+        =link_to '' do
+          =image_tag "logo_gray.svg", height: 80

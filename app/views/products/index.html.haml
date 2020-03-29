@@ -1,0 +1,72 @@
+= render 'shared/header'
+
+.toppage-slider
+  %li
+    = image_tag '4b61123085a986f84c4ae541d24554f9_w.jpg', height: '390px', width: '100%', class: ''
+  %li
+    = image_tag 'top_slick.jpg', height: '390px', width: '100%', class: ''
+  %li
+    = image_tag 'o1500100014557746321.jpg', height: '390px', width: '100%', class: ''
+  
+
+.toppage-main
+  .toppage-main__category-top
+    人気のカテゴリー
+    %ul.toppage-main__list
+      %li.toppage-main__menu
+        - if @ranking[0][0]
+          .toppage-main__logo
+            = @first_category.root.name
+        - if @ranking[1][0]
+          .toppage-main__logo
+            = @second_category.root.name
+        - if @ranking[2][0]
+          .toppage-main__logo
+            = @third_category.root.name
+        - if @ranking[3][0]
+          .toppage-main__logo
+            = @fourth_category.root.name
+
+  .toppage-main__category-bottom
+    - if @ranking[0][0]
+      .toppage-main__category-name
+        .toppage-main__text
+          = @first_category.root.name + '新着アイテム'
+          .toppage-main__item-more
+            = link_to 'もっと見る >', category_path(@first_category)
+        .toppage-main__item
+          %ul.toppage-main__contents
+            = render partial: "products/product", collection: @ranking[0]
+    - if @ranking[1][0]
+      .toppage-main__category-name
+        .toppage-main__text
+          = @second_category.root.name + '新着アイテム'
+          .toppage-main__item-more
+            = link_to 'もっと見る >', category_path(@second_category)
+        .toppage-main__item
+          %ul.toppage-main__contents
+            = render partial: "products/product", collection: @ranking[1]
+    - if @ranking[2][0]
+      .toppage-main__category-name
+        .toppage-main__text
+          = @third_category.root.name + '新着アイテム'
+          .toppage-main__item-more
+            = link_to 'もっと見る >', category_path(@third_category)
+        .toppage-main__item
+          %ul.toppage-main__contents
+            = render partial: "products/product", collection: @ranking[2]
+    - if @ranking[3][0]
+      .toppage-main__category-name
+        .toppage-main__text
+          = @fourth_category.root.name + '新着アイテム'
+          .toppage-main__item-more
+            = link_to 'もっと見る >', category_path(@fourth_category)
+        .toppage-main__item
+          .toppage-main__contents
+            = render partial: "products/product", collection: @ranking[3]
+
+= render 'shared/sellbutton'
+
+= render 'shared/appbanner'
+  
+= render 'shared/footer'
